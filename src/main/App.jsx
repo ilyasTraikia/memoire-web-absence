@@ -20,6 +20,8 @@ import DashboardCard11 from '../partials/dashboard/DashboardCard11';
 import DashboardCard12 from '../partials/dashboard/DashboardCard12';
 import DashboardCard13 from '../partials/dashboard/DashboardCard13';
 import Banner from '../partials/Banner';
+import SidebarAdmin from '../partials/SidebarAdmin';
+import { Outlet } from 'react-router-dom';
 
 function App() {
 
@@ -29,7 +31,7 @@ function App() {
      <div className="flex h-screen overflow-hidden">
 
       {/* Sidebar */}
-      <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+      <SidebarAdmin sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
       {/* Content area */}
       <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
@@ -38,7 +40,9 @@ function App() {
         <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
         <main>
-          Hello
+          <div className='mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10'>
+           <Outlet />
+          </div>
         </main>
 
      
