@@ -1,0 +1,10 @@
+GET http://localhost:4000/
+### 
+POST http://localhost:4000/accounts/addTeacher
+Content-Type: application/json
+
+{
+"compte_type" : "Teacher", "username": "teacher1", "password" : "teacher1", 
+"lastname" : "green", "firstname": "michal", "middlename" : "clair","birthday":"1990-12-29",
+"adresse" : "adresse","email":"email@email.com","gender":"Male"
+}

@@ -1,4 +1,5 @@
 import { MDBBtn } from "mdbreact";
+import { Link } from "react-router-dom";
 
 const data = {
     columns: [{
@@ -43,7 +44,7 @@ const data = {
             empid: '001',
             name: 'Edinburgh',
             option: 'active',
-            view: [ <MDBBtn color="primary" size="sm">view</MDBBtn>],
+            view: [<Link to={`profile/${1}`}> <MDBBtn color="primary" size="sm">view</MDBBtn></Link>],
             status: [<MDBBtn color="danger" size="sm">Desactivate</MDBBtn>],
         },
         {
@@ -210,4 +211,101 @@ const data = {
 };
 
 
-export default data;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const data1 = {
+    columns: [{
+            label: '#',
+            field: 'number',
+            sort: 'asc',
+            width: 150
+        },
+        {
+            label: 'Subjects',
+            field: 'subjects',
+            sort: 'asc',
+            width: 270
+        },
+        {
+            label: 'Strand-Year & Section',
+            field: 'strand',
+            sort: 'asc',
+            width: 200
+        },
+        {
+            label: 'Time',
+            field: 'time',
+            sort: 'asc',
+            width: 100
+        }
+    ],
+    rows: [{
+            number: '1',
+            subjects: 'Animation',
+            strand: 'HE Grade-12-1',
+            time: ''
+        },
+        {
+            number: '2',
+            subjects: 'Math',
+            strand: 'HE Grade-12-2',
+            time: ''
+        },
+        {
+            number: '3',
+            subjects: 'Physics',
+            strand: 'HE Grade-12-3',
+            time: ''
+        },
+        {
+            number: '4',
+            subjects: 'History',
+            strand: 'HE Grade-12-4',
+            time: ''
+        },
+       
+
+    ]
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export  {data,data1};

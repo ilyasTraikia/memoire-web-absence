@@ -28,7 +28,7 @@ export default function CardThree() {
     
           <div className=' flex items-end justify-between'>
             <div>
-              <h4 className='text-title-md font-bold text-black dark:text-white mb-6'>
+              <h4 className='text-title-md font-bold text-white dark:text-white mb-6'>
               Total attendance
               </h4>
               <div className='flex flex-col space-y-2 mt-2'>

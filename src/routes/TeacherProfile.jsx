@@ -1,79 +1,119 @@
-import React,{useState} from 'react';
-import { Form } from 'react-router-dom';
-import ManageTeachersTable from '../partials/ManageTeachersTable';
+import React ,{useState} from 'react'
 import {
-  MDBBtn,
-  MDBModal,
-  MDBModalDialog,
-  MDBModalContent,
-  MDBModalHeader,
-  MDBModalTitle,
-  MDBModalBody
-} from 'mdb-react-ui-kit';
-import axios from 'axios'
+    MDBTabs,
+    MDBTabsItem,
+    MDBTabsLink,
+    MDBTabsContent,
+    MDBTabsPane
+  } from 'mdb-react-ui-kit';
+  import { Form } from 'react-router-dom';
+  import {data1} from '../utils/data'
+  import { MDBDataTable } from 'mdbreact';
 
 
+export default function TeacherProfile() {
 
-export async function action({request,params}) {
+    const [basicActive, setBasicActive] = useState('tab1');
+
+    const handleBasicClick = (value) => {
+      if (value === basicActive) {
+        return;
+      }
   
-  
-  const formData = await request.formData()
-  const data = Object.fromEntries(formData);
-  console.log(data)
-  // await axios.post('', {
-
-  // })
-
-
-
-}
-
-
-
-export default function ManageTeachers() {
-
-  const [basicModal, setBasicModal] = useState(false);
-
-  const toggleShow = () => setBasicModal(!basicModal);
-
-
-
-
-
-
-
-
+      setBasicActive(value);
+    };
   return (
-    <div className='flex flex-col space-y-4'>
-
-      <h2 className='font-bold text-2xl'>Teachers data</h2>
-
-      <p>Data of the working teachers</p>
-
-   
+    <div className='px-8'>
 
 
+<>
+      <MDBTabs className='mb-3'>
+        <MDBTabsItem>
+          <MDBTabsLink onClick={() => handleBasicClick('tab1')} active={basicActive === 'tab1'}>
+            Profile
+          </MDBTabsLink>
+        </MDBTabsItem>
+        <MDBTabsItem>
+          <MDBTabsLink onClick={() => handleBasicClick('tab2')} active={basicActive === 'tab2'}>
+          Edit Profile
+          </MDBTabsLink>
+        </MDBTabsItem>     
+      </MDBTabs>
 
-
-
-       <>
-      <button className='w-[170px] items-center justify-center bg-meta-4 py-2 px-3 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10'  onClick={toggleShow}>Add a new teacher</button >
-      <MDBModal show={basicModal} setShow={setBasicModal} tabIndex='-1'>
-        <MDBModalDialog size="lg">
-          <MDBModalContent>
-            <MDBModalHeader>
-              <MDBModalTitle>Add a new teacher</MDBModalTitle>
-              <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
-            </MDBModalHeader>
-            <MDBModalBody>
+      <MDBTabsContent>
 
 
 
 
 
 
+        <MDBTabsPane show={basicActive === 'tab1'}>
 
-            <Form method='post'>
+         <div className='py-2 text-xl font-bold'>Edinburgh green</div>  
+         <hr /> 
+         <div className='flex flex-col space-y-3 mt-4'>
+           <div className='flex flex-row justify-between '>
+             <div><b>employee_id:</b> 001</div>
+             <div><b>email:</b>dqsd@dqsdsq</div>
+           </div>
+
+           <div className='flex flex-row justify-between '>
+             <div><b>name:</b> Edinburgh green</div>
+             <div><b>bday:</b> 51-85-1025</div>
+           </div>
+
+           <div className='flex flex-row justify-between '>
+             <div><b>gender:</b> Male</div>
+             <div><b>status:</b> inactive</div>
+           </div>
+         </div>
+
+
+
+        </MDBTabsPane>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <MDBTabsPane show={basicActive === 'tab2'}>
+
+
+        <div className='py-2 text-xl font-bold'>Edinburgh green</div>  
+        <hr />
+
+        <Form method='post'>
               <div className='p-6.5'>
 
 
@@ -250,23 +290,8 @@ export default function ManageTeachers() {
                 </div>
                 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <MDBBtn  type='button' style={{backgroundColor:"red"}} className=' text-white bg-meta-4' color='danger' onClick={toggleShow}>
-                Close
-              </MDBBtn>
-              <MDBBtn type='submit' color='dark'  className='float-right' >Save changes</MDBBtn>
+    
+              <button type='submit'    className='float-right w-[170px] items-center justify-center bg-meta-4 py-2 px-3 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10' >Save changes</button>
 
 
 
@@ -291,31 +316,35 @@ export default function ManageTeachers() {
 
 
 
-            </MDBModalBody>
 
 
-          </MDBModalContent>
-        </MDBModalDialog>
-      </MDBModal>
+
+        </MDBTabsPane>
+
+
+      </MDBTabsContent>
     </>
 
 
 
-
-
-
-
-
-
-
-
-
-
-      <ManageTeachersTable />
-
+    {/* Subject handle */}
+    <div className='mt-12 border-black border-opacity-20 border-[1px] p-3'>
+     <div className='py-2 text-xl font-bold pb-1'>Subject handle</div> 
+     <MDBDataTable
+      striped
+      bordered
+      small
+      data={data1}
+     />
     </div>
 
 
 
+
+
+
+
+
+    </div>
   )
 }

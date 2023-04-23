@@ -1,6 +1,6 @@
 import React from 'react';
 import { MDBDataTable } from 'mdbreact';
-import data from '../utils/data'
+import {data} from '../utils/data'
 
 function ManageTeachersTable() {
 
