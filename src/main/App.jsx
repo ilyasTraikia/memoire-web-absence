@@ -21,6 +21,7 @@ import DashboardCard12 from '../partials/dashboard/DashboardCard12';
 import DashboardCard13 from '../partials/dashboard/DashboardCard13';
 import Banner from '../partials/Banner';
 import SidebarAdmin from '../partials/SidebarAdmin';
+import SidebarTeacher from '../partials/SidebarTeacher';
 import { Outlet } from 'react-router-dom';
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
      <div className="flex h-screen overflow-hidden">
 
       {/* Sidebar */}
-      <SidebarAdmin sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+      <SidebarTeacher sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
       {/* Content area */}
       <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
