@@ -7,7 +7,7 @@ import 'mdbreact/dist/css/mdb.css';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import App from './main/App'
 import './style/index.css'
-import { Dashboard,ManageTeachers,ManageStudents,TeacherProfile } from './routes';
+import { Dashboard, ManageTeachers, ManageStudents, TeacherProfile, AttendanceRecord, ChangePassword, QRScanner, StudentRecord} from './routes';
 import {action as AddTeacherAction} from './routes/ManageTeachers'
 
 
@@ -34,6 +34,35 @@ const router = createBrowserRouter([
       {
         path:"manageStudents",
         element:<ManageStudents />
+      },
+
+
+
+
+
+
+
+
+
+      {
+        path:"teacherProfile",
+        element:<TeacherProfile />
+      },
+      {
+        path:"teacherChangePass",
+        element:<ChangePassword />
+      },
+      {
+        path:"studentRecord",
+        element:<StudentRecord />
+      },
+      {
+        path:"QRscanner",
+        element:<QRScanner />
+      },
+      {
+        path:"attandanceRecord",
+        element:<AttendanceRecord />
       }
 
 
