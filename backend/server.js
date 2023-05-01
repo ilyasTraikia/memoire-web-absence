@@ -2,7 +2,11 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const accountRouter = require('./Routers/accountRouter')
+const adminRouter = require('./Routers/adminRouter')
 require('dotenv').config()
+
+
+
 
 
 
@@ -17,6 +21,7 @@ require('dotenv').config()
 app.use(express.json())
 app.use(cors())
 app.use('/accounts', accountRouter)
+app.use('/admin', adminRouter)
 app.get('/', (req, res) => res.send('Hello world!'))
 
 

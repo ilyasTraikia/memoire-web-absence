@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { Form } from 'react-router-dom';
+import { Form,redirect,useNavigation,useLoaderData } from 'react-router-dom';
 import ManageTeachersTable from '../partials/ManageTeachersTable';
 import {
   MDBBtn,
@@ -15,22 +15,34 @@ import axios from 'axios'
 
 
 export async function action({request,params}) {
-  
-  
   const formData = await request.formData()
   const data = Object.fromEntries(formData);
-  console.log(data)
-  // await axios.post('', {
-
-  // })
-
-
-
+  await axios.post('http://localhost:4000/accounts/addTeacher',data ) 
+  return redirect(`/manageTeachers`);
 }
 
 
 
+
+
+
+export async function loader() {
+    const response = await axios.get(`http://localhost:4000/accounts/teachers`)
+    return  response
+   
+}
+
+
+
+
 export default function ManageTeachers() {
+
+  const  teachers  = useLoaderData();
+
+  const TeachersData = teachers.data.data
+ 
+
+  const navigation = useNavigation()
 
   const [basicModal, setBasicModal] = useState(false);
 
@@ -73,37 +85,14 @@ export default function ManageTeachers() {
 
 
 
-            <Form method='post'>
+            <Form method='post' >
               <div className='p-6.5'>
 
 
 
 
 
-              <div className='mb-4.5'>
-                  <label className='mb-2.5 block text-black dark:text-white'>
-                   Employee ID
-                  </label>
-                  <input
-                    type='number'
-                    name='id'
-                    placeholder='Enter your employee id'
-                    className='w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
-                  />
-                </div>
-
-
-
-
-
-
-                <input type="hidden" name='compte_type' value="Teacher"/>
-
-
-
-
-
-
+        
 
 
 
@@ -114,7 +103,7 @@ export default function ManageTeachers() {
                     </label>
                     <input
                       type='text'
-                      name='prenom'
+                      name='firstname'
                       placeholder='Enter your first name'
                       className='w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
                     />
@@ -122,15 +111,17 @@ export default function ManageTeachers() {
 
                   <div className='w-full xl:w-1/2'>
                     <label className='mb-2.5 block text-black dark:text-white'>
-                      Last name
+                      Middlename
                     </label>
                     <input
                       type='text'
-                      name='nom'
-                      placeholder='Enter your last name'
+                      name='middlename'
+                      placeholder='Enter your first name'
                       className='w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
                     />
                   </div>
+
+        
                 </div>
 
 
@@ -143,14 +134,14 @@ export default function ManageTeachers() {
 
 
                 <div className='mb-4.5 flex flex-col gap-6 xl:flex-row'>
-                  <div className='w-full xl:w-1/2'>
+                <div className='w-full xl:w-1/2'>
                     <label className='mb-2.5 block text-black dark:text-white'>
-                      Middlename
+                      Last name
                     </label>
                     <input
                       type='text'
-                      name='middlename'
-                      placeholder='Enter your first name'
+                      name='lastname'
+                      placeholder='Enter your last name'
                       className='w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
                     />
                   </div>
@@ -220,20 +211,20 @@ export default function ManageTeachers() {
 
                 <div className='mb-4.5 flex flex-col gap-6 xl:flex-row'>
                   <div className='w-full xl:w-1/2'>
-                  <div>
-                <label className='mb-3 block text-black dark:text-white'>
-                 Birthday
-                </label>
-                <div className='relative '>
-                  <input
+                   <div>
+                    <label className='mb-3 block text-black dark:text-white'>
+                     Birthday
+                    </label>
+                    <div className='relative '>
+                     <input
                     type='date'
                     name='birthday'
                     className='w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
-                  />
+                     />
 
                   
-                </div>
-              </div>
+                    </div>
+                   </div>
                   </div>
 
                   <div className='mb-4.5 mt-1'>
@@ -243,15 +234,15 @@ export default function ManageTeachers() {
                   <div className='relative z-20 bg-transparent dark:bg-form-input'>
                     <select name='gender' className='relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'>
                       <option value=''>Type your gender</option>
-                      <option value=''>Female</option>
-                      <option value=''>Male</option>
+                      <option value='Female'>Female</option>
+                      <option value='Male'>Male</option>
                     </select>
                   </div>
                 </div>
                 </div>
 
 
-
+               <input type="hidden" name='status' value="inactive" />
 
 
 
@@ -266,7 +257,7 @@ export default function ManageTeachers() {
                 <MDBBtn  type='button' style={{backgroundColor:"red"}} className=' text-white bg-meta-4' color='danger' onClick={toggleShow}>
                 Close
               </MDBBtn>
-              <MDBBtn type='submit' color='dark'  className='float-right' >Save changes</MDBBtn>
+              <MDBBtn type='submit' onClick={()=> { toggleShow() }} color='dark'  className='float-right' >{navigation.state == "submitting"? 'Saving...':'Save changes'}</MDBBtn>
 
 
 
@@ -311,7 +302,7 @@ export default function ManageTeachers() {
 
 
 
-      <ManageTeachersTable />
+      <ManageTeachersTable data = {TeachersData} />
 
     </div>
 

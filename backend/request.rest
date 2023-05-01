@@ -1,10 +1,17 @@
-GET http://localhost:4000/
-### 
-POST http://localhost:4000/accounts/addTeacher
+GET http://localhost:4000/accounts/teachers
+###
+GET http://localhost:4000/admin/settings/Strands
+###
+POST http://localhost:4000/admin/settings/addStrand
 Content-Type: application/json
 
 {
-"compte_type" : "Teacher", "username": "teacher1", "password" : "teacher1", 
-"lastname" : "green", "firstname": "michal", "middlename" : "clair","birthday":"1990-12-29",
-"adresse" : "adresse","email":"email@email.com","gender":"Male"
+   "year":"Grade12","strand" : "ABM","section":"A"
+}
+###
+POST http://localhost:4000/accounts/login
+Content-Type: application/json
+
+{
+   "username":"aget1","password" : "dsqdqs","compteType" : "Teacher"
 }

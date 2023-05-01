@@ -32,7 +32,7 @@ function App() {
      <div className="flex h-screen overflow-hidden">
 
       {/* Sidebar */}
-      <SidebarTeacher sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+      <SidebarAdmin sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
       {/* Content area */}
       <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">

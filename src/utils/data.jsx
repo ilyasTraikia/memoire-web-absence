@@ -1,7 +1,7 @@
 import { MDBBtn } from "mdbreact";
 import { Link } from "react-router-dom";
 
-const data = {
+const data3 = {
     columns: [{
             label: '#',
             field: 'number',
@@ -308,4 +308,4 @@ const data1 = {
 
 
 
-export  {data,data1};
+export  {data3,data1};

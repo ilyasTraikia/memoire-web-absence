@@ -6,6 +6,11 @@ import AttendanceRecord from "./AttendanceRecord";
 import ChangePassword from "./ChangePassword";
 import QRScanner from "./QRScanner";
 import StudentRecord from "./StudentRecord";
+import AddStrand from "./AddStrand";
+import AddSubject from "./AddSubject";
+import Assign from "./Assign";
+import SemesterSwitch from "./SemesterSwitch";
+import Login from './Login/Login'
 
 export {
     Dashboard,
@@ -15,5 +20,10 @@ export {
     AttendanceRecord,
     ChangePassword,
     QRScanner,
-    StudentRecord
+    StudentRecord,
+    AddStrand,
+    AddSubject,
+    Assign,
+    SemesterSwitch,
+    Login
 }

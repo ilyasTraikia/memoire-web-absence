@@ -11,6 +11,8 @@ import {
 } from 'mdb-react-ui-kit';
 
 export default function ManageStudents() {
+
+
     const [basicModal, setBasicModal] = useState(false);
 
     const toggleShow = () => setBasicModal(!basicModal);
@@ -199,7 +201,7 @@ export default function ManageStudents() {
   
   
   
-        <ManageTeachersTable />
+       
   
       </div>
   
