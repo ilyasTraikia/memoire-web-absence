@@ -16,6 +16,8 @@ import {action as AddStrandAction} from './routes/AddStrand'
 import {loader as StrandLoader} from './routes/AddStrand'
 import {action as AddSubjectAction} from './routes/AddSubject'
 import {loader as SubjectLoader} from './routes/AddSubject'
+import {loader as StudentLoader} from './routes/ManageStudents'
+import {action as AddStudentAction} from './routes/ManageStudents'
 
 
 
@@ -44,7 +46,9 @@ const router = createBrowserRouter([
        },
       {
         path:"manageStudents",
-        element:<ManageStudents />
+        element:<ManageStudents />,
+        loader:StudentLoader,
+        action:AddStudentAction
       },
       {
         path:"settings/addStrand",

@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import ManageTeachersTable from '../partials/ManageTeachersTable';
+import { Form,redirect,useNavigation,useLoaderData } from 'react-router-dom';
 import {
   MDBBtn,
   MDBModal,
@@ -9,9 +10,42 @@ import {
   MDBModalTitle,
   MDBModalBody
 } from 'mdb-react-ui-kit';
+import axios from 'axios'
+import ManageStudentsTable from '../partials/ManageStudentsTable';
+
+
+
+
+export async function action({request,params}) {
+  const formData = await request.formData()
+  const data = Object.fromEntries(formData);
+  await axios.post('http://localhost:4000/admin/addStudent',data ) 
+  return redirect(`/manageStudents`);
+}
+
+
+
+
+
+
+export async function loader() {
+    const response = await axios.get(`http://localhost:4000/admin/students`)
+    return  response
+   
+}
+
+
+
+
+
+
+
+
 
 export default function ManageStudents() {
 
+  const  students  = useLoaderData().data.data
+  console.log(students);
 
     const [basicModal, setBasicModal] = useState(false);
 
@@ -54,116 +88,191 @@ export default function ManageStudents() {
   
   
   
-              <form action='#'>
-                <div className='p-6.5'>
-  
-  
-  
-                <div className='mb-4.5'>
+              <Form method='post' >
+              <div className='p-6.5'>
+
+
+
+
+
+        
+
+
+
+                <div className='mb-4.5 flex flex-col gap-6 xl:flex-row'>
+                  <div className='w-full xl:w-1/2'>
                     <label className='mb-2.5 block text-black dark:text-white'>
-                    Student ID
+                      First name
                     </label>
                     <input
-                      type='email'
-                      placeholder='Enter your student id'
+                      type='text'
+                      name='firstname'
+                      placeholder='Enter your first name'
                       className='w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
                     />
                   </div>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-                  <div className='mb-4.5 flex flex-col gap-6 xl:flex-row'>
-                    <div className='w-full xl:w-1/2'>
-                      <label className='mb-2.5 block text-black dark:text-white'>
-                        First name
-                      </label>
-                      <input
-                        type='text'
-                        placeholder='Enter your first name'
-                        className='w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
-                      />
-                    </div>
-  
-                    <div className='w-full xl:w-1/2'>
-                      <label className='mb-2.5 block text-black dark:text-white'>
-                        Last name
-                      </label>
-                      <input
-                        type='text'
-                        placeholder='Enter your last name'
-                        className='w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
-                      />
-                    </div>
-                  </div>
-  
-                  <div className='mb-4.5 flex flex-col gap-6 xl:flex-row'>
-                    <div className='w-full xl:w-1/2'>
-                      <label className='mb-2.5 block text-black dark:text-white'>
-                        Middlename
-                      </label>
-                      <input
-                        type='text'
-                        placeholder='Enter your first name'
-                        className='w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
-                      />
-                    </div>
-  
-                  </div>
-  
-  
-  
-  
-                  <div className='mb-4.5 flex flex-col gap-6 xl:flex-row'>
-                    <div className='w-full xl:w-1/2'>
-                    <div>
-                  <label className='mb-3 block text-black dark:text-white'>
-                   Birthday
-                  </label>
-                  <div className='relative '>
-                    <input
-                      type='date'
-                      className='w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
-                    />
-  
-                    
-                  </div>
-                </div>
-                    </div>
-  
-                    <div className='mb-4.5 mt-1'>
+
+                  <div className='w-full xl:w-1/2'>
                     <label className='mb-2.5 block text-black dark:text-white'>
-                    Gender
+                      Middlename
                     </label>
-                    <div className='relative z-20 bg-transparent dark:bg-form-input'>
-                      <select className='relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'>
-                        <option value=''>Type your gender</option>
-                        <option value=''>Female</option>
-                        <option value=''>Male</option>
-                      </select>
-                    </div>
+                    <input
+                      type='text'
+                      name='middlename'
+                      placeholder='Enter your midlename'
+                      className='w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
+                    />
                   </div>
-                  </div>
-  
-  
-                  <MDBBtn  type='button' style={{backgroundColor:"red"}} className=' text-white bg-meta-4' color='danger' onClick={toggleShow}>
-                  Close
-                </MDBBtn>
-                <MDBBtn type='submit' color='dark'  className='float-right' >Save changes</MDBBtn>
-  
-  
-  
+
+        
                 </div>
-              </form>
-  
-  
+
+
+
+
+
+
+
+
+
+
+                <div className='mb-4.5 flex flex-col gap-6 xl:flex-row'>
+                <div className='w-full xl:w-1/2'>
+                    <label className='mb-2.5 block text-black dark:text-white'>
+                      Last name
+                    </label>
+                    <input
+                      type='text'
+                      name='lastname'
+                      placeholder='Enter your last name'
+                      className='w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
+                    />
+                  </div>
+
+                  <div className='mb-4.5 mt-1'>
+                  <label className='mb-2.5 block text-black dark:text-white'>
+                  Year,Section & Strand
+                  </label>
+                  <div className='relative z-20 bg-transparent dark:bg-form-input'>
+                    <select name='SectionYearId' className='relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'>
+                      <option value='1' disabled>ABM Grade11 A</option>
+                      <option value='2'>ABM Grade12 A</option>
+                      <option value='3'>HUMUSS Grade12 B</option>
+                      <option value='4'>HE Grade12 B</option>
+                      <option value='5'>HE Grade12 1</option>
+                    </select>
+                  </div>
+                </div>
+
+                
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+                <div className='mb-4.5 flex flex-col gap-6 xl:flex-row'>
+                  <div className='w-full xl:w-1/2'>
+                    <label className='mb-2.5 block text-black dark:text-white'>
+                      Username
+                    </label>
+                    <input
+                      type='text'
+                      name='username'
+                      placeholder='Enter your username'
+                      className='w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
+                    />
+                  </div>
+
+                  <div className='w-full xl:w-1/2'>
+                    <label className='mb-2.5 block text-black dark:text-white'>
+                    Password 
+                    </label>
+                    <input
+                      type='password'
+                      name='password'
+                      placeholder='Enter your password'
+                      className='w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
+                    />
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div className='mb-4.5 flex flex-col gap-6 xl:flex-row'>
+                  <div className='w-full xl:w-1/2'>
+                   <div>
+                    <label className='mb-3 block text-black dark:text-white'>
+                     Birthday
+                    </label>
+                    <div className='relative '>
+                     <input
+                    type='date'
+                    name='birthday'
+                    className='w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
+                     />
+
+                  
+                    </div>
+                   </div>
+                  </div>
+
+                  <div className='mb-4.5 mt-1'>
+                  <label className='mb-2.5 block text-black dark:text-white'>
+                  Gender
+                  </label>
+                  <div className='relative z-20 bg-transparent dark:bg-form-input'>
+                    <select name='gender' className='relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'>
+                      <option value=''>Type your gender</option>
+                      <option value='Female'>Female</option>
+                      <option value='Male'>Male</option>
+                    </select>
+                  </div>
+                </div>
+                </div>
+
+
+               <input type="hidden" name='status' value="inactive" />
+
+
+
+
+
+
+
+
+
+
+
+                <MDBBtn  type='button' style={{backgroundColor:"red"}} className=' text-white bg-meta-4' color='danger' onClick={toggleShow}>
+                Close
+              </MDBBtn>
+              <MDBBtn type='submit' onClick={()=> { toggleShow() }} color='dark'  className='float-right' >{navigation.state == "submitting"? 'Saving...':'Save changes'}</MDBBtn>
+
+
+
+              </div>
+            </Form>
+
+
   
   
   
@@ -196,7 +305,7 @@ export default function ManageStudents() {
   
   
   
-  
+   <ManageStudentsTable data={students} />
   
   
   

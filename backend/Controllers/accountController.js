@@ -39,6 +39,7 @@ exports.insertTeacher = async(req, res, next) => {
             throw err
 
         values.push(result.insertId)
+        
     })
 
 
