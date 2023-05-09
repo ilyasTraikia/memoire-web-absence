@@ -12,6 +12,10 @@ router.post('/settings/addSubject', adminController.insertSubject)
 router.get('/students', adminController.getAllStudents)
 router.post('/addStudent', adminController.insertStudent)
 router.put('/updateStudentStatus/:id', adminController.updateStudentStatus)
+router.put('/updateStudent/:id', adminController.UpdateStudent)
+
+
+router.get('/student/:id', adminController.getStudentById)
 
 
 

@@ -76,7 +76,8 @@ exports.insertSubject = async(req, res, next) => {
 
 
 exports.getAllStudents = (req, res, next) => {
-    conn.query("SELECT * FROM student INNER JOIN academic ON student.SectionYearId = academic.id", function(err, data, fields) {
+    conn.query("SELECT * FROM student INNER JOIN academic ON student.SectionYear = academic.id_academic", function(err, data, fields) {
+
         res.status(200).json({
             status: "success",
             data: data
@@ -88,30 +89,38 @@ exports.getAllStudents = (req, res, next) => {
 
 
 exports.insertStudent = async(req, res, next) => {
-    const values = Object.values(req.body)
- 
+    const object = req.body
 
-    conn.query("INSERT INTO compte(compte_type) VALUES ('Student')", function(err, result) {
+    const username = req.body.username
+    const password = req.body.password
+
+
+    conn.query(`INSERT INTO compte(compte_type,username,password) VALUES ('Student','${username}','${password}')`, function(err, result) {
         if (err)
             throw err
         values.push(result.insertId)
-       
+
     })
+
+    delete object.username
+    delete object.password
+
+    const values = Object.values(object)
 
 
     setTimeout(() => {
-    conn.query("INSERT INTO student(firstname,middlename,lastname,SectionYearId,username,password,birthday,gender,status ,id_compte) VALUES ?", [
-        [values]
-    ], function(err, result) {
-        if (err)
-            throw err
-        res.status(201).json({
-            status: "success",
-            message: "student inserted",
-        })
+        conn.query("INSERT INTO student(firstname,middlename,lastname,SectionYear,birthday,gender,status ,id_compte) VALUES ?", [
+            [values]
+        ], function(err, result) {
+            if (err)
+                throw err
+            res.status(201).json({
+                status: "success",
+                message: "student inserted",
+            })
 
-    })
-}, 200)  
+        })
+    }, 200)
 
 
 }
@@ -131,4 +140,45 @@ exports.updateStudentStatus = async(req, res, next) => {
 
 
 
+}
+
+
+
+
+exports.UpdateStudent = async(req, res, next) => {
+    const student_id_2 = req.params.id
+
+    await conn.query(`UPDATE student INNER JOIN compte ON student.id_compte = compte.id_compte 
+     SET student.firstname = '${req.body.firstname}'  ,student.middlename = '${req.body.middlename}',
+     student.lastname = '${req.body.lastname}',student.SectionYear='${req.body.SectionYear}',
+     compte.username = '${req.body.username}',compte.password = '${req.body.password}',student.birthday= '${req.body.birthday}',
+     student.gender='${req.body.gender}',student.status='${req.body.status}' WHERE id = ${student_id_2}`,
+
+        function(err, result) {
+            if (err) throw err;
+            res.status(201).json({
+                status: "success",
+                message: "student updated",
+            });
+
+
+        })
+}
+
+
+
+
+
+
+exports.getStudentById = (req, res, next) => {
+    const student_id_3 = req.params.id
+    conn.query(`SELECT * FROM student 
+        INNER JOIN academic ON student.SectionYear = academic.id_academic 
+        INNER JOIN compte ON student.id_compte=compte.id_compte
+        where id = ${student_id_3}`, function(err, data, fields) {
+        res.status(200).json({
+            status: "success",
+            data: data
+        })
+    })
 }

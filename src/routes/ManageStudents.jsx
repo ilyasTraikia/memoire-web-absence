@@ -1,6 +1,5 @@
 import React,{useState} from 'react';
-import ManageTeachersTable from '../partials/ManageTeachersTable';
-import { Form,redirect,useNavigation,useLoaderData } from 'react-router-dom';
+import { Form,redirect,useLoaderData } from 'react-router-dom';
 import {
   MDBBtn,
   MDBModal,
@@ -45,7 +44,7 @@ export async function loader() {
 export default function ManageStudents() {
 
   const  students  = useLoaderData().data.data
-  console.log(students);
+
 
     const [basicModal, setBasicModal] = useState(false);
 
@@ -154,7 +153,7 @@ export default function ManageStudents() {
                   Year,Section & Strand
                   </label>
                   <div className='relative z-20 bg-transparent dark:bg-form-input'>
-                    <select name='SectionYearId' className='relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'>
+                    <select name='SectionYear' className='relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'>
                       <option value='1' disabled>ABM Grade11 A</option>
                       <option value='2'>ABM Grade12 A</option>
                       <option value='3'>HUMUSS Grade12 B</option>

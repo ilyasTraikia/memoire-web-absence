@@ -19,7 +19,7 @@ exports.getAllTeachers = (req, res, next) => {
 
 exports.getTeacherById = (req, res, next) => {
     const teacherId = req.params.id
-    conn.query(`SELECT * FROM teacher where id = ${teacherId}`, function(err, data, fields) {
+    conn.query(`SELECT * FROM teacher INNER JOIN compte ON teacher.id_compte=compte.id_compte where id = ${teacherId}`, function(err, data, fields) {
         res.status(200).json({
             status: "success",
             data: data
@@ -32,19 +32,26 @@ exports.getTeacherById = (req, res, next) => {
 
 
 exports.insertTeacher = async(req, res, next) => {
-    const values = Object.values(req.body)
+    const object = req.body
 
-    conn.query("INSERT INTO compte(compte_type) VALUES ('Teacher')", function(err, result) {
+    const username = req.body.username
+    const password = req.body.password
+
+    conn.query(`INSERT INTO compte(compte_type,username,password) VALUES ('Teacher','${username}','${password}')`, function(err, result) {
         if (err)
             throw err
 
         values.push(result.insertId)
-        
+
     })
 
+    delete object.username
+    delete object.password
+
+    const values = Object.values(object)
 
     setTimeout(() => {
-        conn.query("INSERT INTO teacher(firstname,middlename,lastname,email,username,password,birthday,gender,status,id_compte) VALUES ?", [
+        conn.query("INSERT INTO teacher(firstname,middlename,lastname,email,birthday,gender,status,id_compte) VALUES ?", [
             [values]
         ], function(err, result) {
             if (err) throw err;
@@ -67,11 +74,11 @@ exports.insertTeacher = async(req, res, next) => {
 exports.UpdateTeacher = async(req, res, next) => {
     const teachid_2 = req.params.id
 
-    await conn.query(`UPDATE teacher SET firstname = '${req.body.firstname}' 
-    ,middlename = '${req.body.middlename}',lastname = '${req.body.lastname}',
-    email = '${req.body.email}',username = '${req.body.username}',
-    password = '${req.body.password}',birthday= '${req.body.birthday}',gender='${req.body.gender}'
-    ,status='${req.body.status}' WHERE id = ${teachid_2}`,
+    await conn.query(`UPDATE teacher INNER JOIN compte ON teacher.id_compte = compte.id_compte 
+    SET teacher.firstname = '${req.body.firstname}' ,teacher.middlename = '${req.body.middlename}',
+    teacher.lastname = '${req.body.lastname}', teacher.email = '${req.body.email}',compte.username = '${req.body.username}',
+    compte.password = '${req.body.password}',teacher.birthday= '${req.body.birthday}',teacher.gender='${req.body.gender}'
+    ,teacher.status='${req.body.status}' WHERE id = ${teachid_2}`,
 
         function(err, result) {
             if (err) throw err;
@@ -119,38 +126,16 @@ exports.login = async(req, res, next) => {
 
     const username = req.body.username
     const password = req.body.password
-    const compteType = req.body.compteType
+        // const compteType = req.body.compteType
 
-    if (compteType == 'Teacher') {
-        conn.query(`SELECT * FROM teacher where username = '${username}' and password = '${password}'`, function(err, data, fields) {
-            if (err) throw err;
-            res.status(200).json({
-                status: "success",
-                data: data
-            })
+    conn.query(`SELECT * FROM compte where username = ${username} and password = ${password}`, function(err, data, fields) {
+        if (err) throw err;
+        res.status(200).json({
+            status: "success",
+            data: data
         })
-    }
+    })
 
-
-    if (compteType == 'Admin') {
-        conn.query(`SELECT * FROM admin where username = ${username} and password = ${password}`, function(err, data, fields) {
-            if (err) throw err;
-            res.status(200).json({
-                status: "success",
-                data: data
-            })
-        })
-    }
-
-    if (compteType == 'Student') {
-        conn.query(`SELECT * FROM student where username = ${username} and password = ${password}`, function(err, data, fields) {
-            if (err) throw err;
-            res.status(200).json({
-                status: "success",
-                data: data
-            })
-        })
-    }
 
 
 }

@@ -54,7 +54,7 @@ export default function ManageStudentsTable(props) {
 
 
       const newArray= data1.map((element,index) => {
-        console.log(element);
+    
         return {
             number: index,
             id: element.id,
