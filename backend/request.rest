@@ -13,7 +13,7 @@ POST http://localhost:4000/accounts/login
 Content-Type: application/json
 
 {
-   "username":"aget1","password" : "dsqdqs","compteType" : "Teacher"
+   "username":"Username","password" : "gdfgfd"
 }
 ###
 GET http://localhost:4000/admin/students

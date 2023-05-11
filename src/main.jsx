@@ -7,7 +7,7 @@ import 'mdbreact/dist/css/mdb.css';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import App from './main/App'
 import './style/index.css'
-import { Dashboard, ManageTeachers, ManageStudents, TeacherProfile, AttendanceRecord, ChangePassword, QRScanner, StudentRecord,AddStrand,AddSubject,Assign,SemesterSwitch,Login,StudentProfile} from './routes';
+import { Dashboard, ManageTeachers, ManageStudents, TeacherProfile, AttendanceRecord, ChangePassword, QRScanner, StudentRecord,AddStrand,AddSubject,Assign,SemesterSwitch,Login,StudentProfile,IndexPage} from './routes';
 import {action as AddTeacherAction} from './routes/ManageTeachers'
 import {loader as ManageTeachersLoader} from './routes/ManageTeachers'
 import { loader as TeacherLoader} from './routes/TeacherProfile'
@@ -20,6 +20,7 @@ import {loader as StudentLoader} from './routes/ManageStudents'
 import {action as AddStudentAction} from './routes/ManageStudents'
 import { loader as OneStudentLoader} from './routes/StudentProfile'
 import  {action as UpdateStudentAction} from './routes/StudentProfile'
+import  {action as LoginAction} from './routes/Login/Login'
 
 
 
@@ -32,9 +33,12 @@ const router = createBrowserRouter([
         //  Admin routes
       {
         index:true,
-        element:<Dashboard />
+        element:<IndexPage />
       },
       {
+        path:"dashboard",
+        element:<Dashboard />
+      },{
         path:"manageTeachers",
         element:<ManageTeachers />,
         loader:ManageTeachersLoader,
@@ -121,7 +125,8 @@ const router = createBrowserRouter([
   },
   {
     path:"/login",
-    element:<Login />
+    element:<Login />,
+    action:LoginAction
   }
 ]);
 

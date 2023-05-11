@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { NavLink, useLocation} from 'react-router-dom';
+import { NavLink, useLocation,redirect,useNavigate} from 'react-router-dom';
 
 import SidebarLinkGroup from './SidebarLinkGroup';
 
 function SidebarTeacher({ sidebarOpen, setSidebarOpen }) {
+  const navigate = useNavigate()
   let location = useLocation();
   const { pathname } = location;
 
@@ -306,6 +307,8 @@ function SidebarTeacher({ sidebarOpen, setSidebarOpen }) {
                         onClick={(e) => {
                           e.preventDefault();
                           sidebarExpanded ? handleClick() : setSidebarExpanded(true);
+                          localStorage.removeItem("jwttoken")
+                          navigate('/login')
                         }}
                       >
                         <div className="flex items-center justify-between">

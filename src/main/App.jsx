@@ -1,5 +1,6 @@
 import './App.css'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import Sidebar from '../partials/Sidebar';
 import Header from '../partials/Header';
 import WelcomeBanner from '../partials/dashboard/WelcomeBanner';
@@ -22,35 +23,96 @@ import DashboardCard13 from '../partials/dashboard/DashboardCard13';
 import Banner from '../partials/Banner';
 import SidebarAdmin from '../partials/SidebarAdmin';
 import SidebarTeacher from '../partials/SidebarTeacher';
-import { Outlet } from 'react-router-dom';
+import { Outlet, redirect ,useNavigate} from 'react-router-dom';
+
+
+
+
+
+
+
 
 function App() {
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  return (
-     <div className="flex h-screen overflow-hidden">
+  const [comptetype,setComptetype] = useState("")
 
-      {/* Sidebar */}
-      <SidebarAdmin sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+  const navigation = useNavigate()
 
-      {/* Content area */}
-      <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
+  
+useEffect(()=>{
+  let localStorageObject =  JSON.parse(localStorage.getItem("jwttoken")) 
+  if(localStorageObject === null) {
+    setComptetype("noLoggedUser")
+    
+  } else {
+    setComptetype(localStorageObject.compteType)
+    
+  }
 
-        {/*  Site header */}
-        <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
-        <main>
-          <div className='mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10'>
-           <Outlet />
-          </div>
-        </main>
 
-     
+},[])
 
-      </div>
-    </div>
-  )
+  if(comptetype == 'Teacher') {
+
+    return (
+      <div className="flex h-screen overflow-hidden">
+      
+       {/* Sidebar */}
+       <SidebarTeacher sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+ 
+       {/* Content area */}
+       <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
+ 
+         {/*  Site header */}
+         <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+ 
+         <main>
+           <div className='mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10'>
+            <Outlet />
+           </div>
+         </main>
+ 
+      
+ 
+       </div>
+     </div>
+   )
+  } else if(comptetype == 'Admin') {
+    return (
+      <div className="flex h-screen overflow-hidden">
+      
+       {/* Sidebar */}
+       <SidebarAdmin sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+ 
+       {/* Content area */}
+       <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
+ 
+         {/*  Site header */}
+         <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+ 
+         <main>
+           <div className='mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10'>
+            <Outlet />
+           </div>
+         </main>
+ 
+      
+ 
+       </div>
+     </div>
+   )
+
+  } else if(comptetype == "noLoggedUser") {
+      
+       navigation("/login")
+   
+
+  } 
+
+
 }
 
 export default App

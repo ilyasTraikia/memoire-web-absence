@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { NavLink, useLocation} from 'react-router-dom';
+import { NavLink, useLocation,useNavigate} from 'react-router-dom';
 
 import SidebarLinkGroup from './SidebarLinkGroup';
 
 function SidebarAdmin({ sidebarOpen, setSidebarOpen }) {
+  const navigate = useNavigate()
   let location = useLocation();
   const { pathname } = location;
 
@@ -120,7 +121,7 @@ function SidebarAdmin({ sidebarOpen, setSidebarOpen }) {
                   return (
                     <React.Fragment>
                       <NavLink
-                        to={`/`}
+                        to={`/dashboard`}
                         className={`block text-slate-200 truncate transition duration-150 ${
                           pathname === '/' || pathname.includes('dashboard') ? 'hover:text-slate-200' : 'hover:text-white'
                         }`}
@@ -372,6 +373,8 @@ function SidebarAdmin({ sidebarOpen, setSidebarOpen }) {
                         onClick={(e) => {
                           e.preventDefault();
                           sidebarExpanded ? handleClick() : setSidebarExpanded(true);
+                          localStorage.removeItem("jwttoken")
+                          navigate('/login')
                         }}
                       >
                         <div className="flex items-center justify-between">

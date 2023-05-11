@@ -11,7 +11,8 @@ import AddSubject from "./AddSubject";
 import Assign from "./Assign";
 import SemesterSwitch from "./SemesterSwitch";
 import Login from './Login/Login'
-import StudentProfile from "./StudentProfile";
+import StudentProfile from "./StudentProfile"
+import IndexPage from "./IndexPage";
 
 export {
     Dashboard,
@@ -27,5 +28,6 @@ export {
     Assign,
     SemesterSwitch,
     Login,
-    StudentProfile
+    StudentProfile,
+    IndexPage
 }

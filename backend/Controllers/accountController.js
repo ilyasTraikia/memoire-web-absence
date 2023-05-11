@@ -1,4 +1,5 @@
 const conn = require('../Services/db')
+const jwt = require('jsonwebtoken');
 
 
 
@@ -128,12 +129,23 @@ exports.login = async(req, res, next) => {
     const password = req.body.password
         // const compteType = req.body.compteType
 
-    conn.query(`SELECT * FROM compte where username = ${username} and password = ${password}`, function(err, data, fields) {
+    conn.query(`SELECT * FROM compte where username = '${username}' and password = '${password}'`, function(err, data, fields) {
         if (err) throw err;
-        res.status(200).json({
-            status: "success",
-            data: data
-        })
+
+        if (data.length != 0) {
+            const accestoken = jwt.sign({ userId: data[0].id_compte }, process.env.ACCESS_TOKEN_SECRET)
+            res.status(200).json({
+                status: "suecess",
+                data: data,
+                token: accestoken
+            })
+        } else {
+
+            res.status(401).json({
+                status: "cant find user",
+                data: data
+            })
+        }
     })
 
 
