@@ -12,12 +12,12 @@ export async function action({request}) {
   const data = Object.fromEntries(formData);
   try {
   const response =  await axios.post('http://localhost:4000/accounts/login',data )
-  console.log(response.status)
+
   if(response.status == 200) {
   const compteType = response.data.data[0].compte_type 
   const token = response.data.token
-  const localStorageVariable = {compteType:compteType,token:token}
-  console.log(localStorageVariable)
+  const compte_id = response.data.data[0].id_compte
+  const localStorageVariable = {compteType:compteType,token:token,compte_id:compte_id}
   localStorage.setItem('jwttoken',JSON.stringify(localStorageVariable))
   return redirect(`/`);
   } else {

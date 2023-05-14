@@ -17,15 +17,18 @@ import {
   export async function action({request,params}) {
     const formData = await request.formData()
     const data = Object.fromEntries(formData);
-    await axios.put(`http://localhost:4000/accounts/updateTeacher/${params.teacherId}`,data ) 
-    return redirect(`/manageTeachers`);
+    console.log(data)
+    const variable = JSON.parse(localStorage.getItem('jwttoken'))
+    await axios.put(`http://localhost:4000/accounts/updateTeacher/${variable.compte_id}`,data ) 
+    return redirect(`/teacherProfile`);
   }
   
   
 
 
   export async function loader({ params }) {
-    const teacher = await axios.get(`http://localhost:4000/accounts/teacher/${params.teacherId}`)
+    const variable = JSON.parse(localStorage.getItem('jwttoken'))
+    const teacher = await axios.get(`http://localhost:4000/accounts/teacherP/${variable.compte_id}`)
     return  teacher;
   }
   
@@ -330,7 +333,7 @@ export default function TeacherProfile() {
 
 
     {/* Subject handle */}
-    <div className='mt-12 border-black border-opacity-20 border-[1px] p-3'>
+    {/* <div className='mt-12 border-black border-opacity-20 border-[1px] p-3'>
      <div className='py-2 text-xl font-bold pb-1'>Subject handle</div> 
      <MDBDataTable
       striped
@@ -338,7 +341,7 @@ export default function TeacherProfile() {
       small
       data={data1}
      />
-    </div>
+    </div> */}
 
 
 

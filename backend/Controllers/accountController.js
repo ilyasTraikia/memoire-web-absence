@@ -30,6 +30,20 @@ exports.getTeacherById = (req, res, next) => {
 
 
 
+exports.getTeacherPById = (req, res, next) => {
+    const teacherPId = req.params.id
+    conn.query(`SELECT * FROM teacher INNER JOIN compte ON teacher.id_compte=compte.id_compte where compte.id_compte = ${teacherPId}`, function(err, data, fields) {
+
+        res.status(200).json({
+            status: "success",
+            data: data
+        })
+    })
+}
+
+
+
+
 
 
 exports.insertTeacher = async(req, res, next) => {
@@ -74,6 +88,8 @@ exports.insertTeacher = async(req, res, next) => {
 
 exports.UpdateTeacher = async(req, res, next) => {
     const teachid_2 = req.params.id
+
+
 
     await conn.query(`UPDATE teacher INNER JOIN compte ON teacher.id_compte = compte.id_compte 
     SET teacher.firstname = '${req.body.firstname}' ,teacher.middlename = '${req.body.middlename}',

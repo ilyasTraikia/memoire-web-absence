@@ -23,7 +23,8 @@ import DashboardCard13 from '../partials/dashboard/DashboardCard13';
 import Banner from '../partials/Banner';
 import SidebarAdmin from '../partials/SidebarAdmin';
 import SidebarTeacher from '../partials/SidebarTeacher';
-import { Outlet, redirect ,useNavigate} from 'react-router-dom';
+import { Outlet ,useNavigate} from 'react-router-dom';
+import SidebarChefDepartement from '../partials/SidebarChefDepartement';
 
 
 
@@ -110,7 +111,32 @@ useEffect(()=>{
        navigation("/login")
    
 
-  } 
+  } else if(comptetype == 'ChefDepartement') {
+    return (
+      <div className="flex h-screen overflow-hidden">
+      
+       {/* Sidebar */}
+       <SidebarChefDepartement sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+ 
+       {/* Content area */}
+       <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
+ 
+         {/*  Site header */}
+         <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+ 
+         <main>
+           <div className='mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10'>
+            <Outlet />
+           </div>
+         </main>
+ 
+      
+ 
+       </div>
+     </div>
+   )
+
+  }
 
 
 }

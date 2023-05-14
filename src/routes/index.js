@@ -13,6 +13,7 @@ import SemesterSwitch from "./SemesterSwitch";
 import Login from './Login/Login'
 import StudentProfile from "./StudentProfile"
 import IndexPage from "./IndexPage";
+import ChefDepartementProfile from "./ChefDepartementProfile";
 
 export {
     Dashboard,
@@ -29,5 +30,6 @@ export {
     SemesterSwitch,
     Login,
     StudentProfile,
-    IndexPage
+    IndexPage,
+    ChefDepartementProfile
 }
