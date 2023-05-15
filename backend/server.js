@@ -4,6 +4,7 @@ const cors = require('cors')
 const accountRouter = require('./Routers/accountRouter')
 const adminRouter = require('./Routers/adminRouter')
 const chefDepRouter = require('./Routers/chefDepRouter')
+const teacherRouter = require('./Routers/teacherRouter')
 require('dotenv').config()
 
 
@@ -24,6 +25,7 @@ app.use(cors())
 app.use('/accounts', accountRouter)
 app.use('/admin', adminRouter)
 app.use('/chefDep', chefDepRouter)
+app.use('/teacher', teacherRouter)
 app.get('/', (req, res) => res.send('Hello world!'))
 
 

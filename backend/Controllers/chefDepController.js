@@ -42,7 +42,7 @@ exports.insertSeance = async(req, res, next) => {
 exports.getAllSeances = (req, res, next) => {
     conn.query(`SELECT * FROM seance
                 INNER JOIN subject ON seance.id_module = subject.id_module  
-                INNER JOIN teacher ON seance.id_teacher = teacher.id      `, function(err, data, fields) {
+                INNER JOIN teacher ON seance.id_teacher = teacher.id_teacher      `, function(err, data, fields) {
         res.status(200).json({
             status: "success",
             data: data

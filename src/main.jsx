@@ -23,7 +23,9 @@ import  {action as UpdateStudentAction} from './routes/StudentProfile'
 import  {action as LoginAction} from './routes/Login/Login'
 import {loader as assignLoader} from './routes/Assign'
 import  {action as AssigntAction} from './routes/Assign'
-
+import TeacherProfileUrl, { loader as TeacherUrlLoader} from './routes/TeacherProfileUrl'
+import  {action as UpdateTeacherUrlAction} from './routes/TeacherProfileUrl'
+import {loader as recordsLoader} from './routes/AttendanceRecord'
 
 
 
@@ -48,9 +50,9 @@ const router = createBrowserRouter([
       },
       {
         path:"manageTeachers/profile/:teacherId",
-        element:<TeacherProfile />,
-        loader:TeacherLoader,
-        action:UpdateTeacherAction
+        element:<TeacherProfileUrl />,
+        loader:TeacherUrlLoader,
+        action:UpdateTeacherUrlAction
        },
       {
         path:"manageStudents",
@@ -111,7 +113,8 @@ const router = createBrowserRouter([
       },
       {
         path:"attandanceRecord",
-        element:<AttendanceRecord />
+        element:<AttendanceRecord />,
+        loader:recordsLoader
       },
        
      

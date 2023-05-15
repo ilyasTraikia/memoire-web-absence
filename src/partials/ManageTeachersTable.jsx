@@ -51,16 +51,16 @@ const columnsArray = [{
 const newArray= data1.map((element,index) => {
   return {
       number: index,
-      empid: element.id,
+      empid: element.id_teacher,
       name: element.firstname + ' '+ element.middlename + ' '+ element.lastname,
       option: element.status,
-      view: [<Link to={`profile/${element.id}`}> <MDBBtn color="primary" size="sm">view</MDBBtn></Link>],
+      view: [<Link to={`profile/${element.id_teacher}`}> <MDBBtn color="primary" size="sm">view</MDBBtn></Link>],
       status:
 
 
        [<form  onSubmit={async (e)=> { 
         e.preventDefault()
-          await axios.put(`http://localhost:4000/accounts/updateTeacherStatus/${element.id}`,element.status == 'active' ? {status:'inactive'}:{status:'active'})
+          await axios.put(`http://localhost:4000/accounts/updateTeacherStatus/${element.id_teacher}`,element.status == 'active' ? {status:'inactive'}:{status:'active'})
          location.reload()
           }} >
         <MDBBtn type='submit' name="status" color={element.status == 'active' ? 'danger':'success'} size="sm">{element.status == 'active' ? 'Desactivate':'Activate'}</MDBBtn>

@@ -20,7 +20,7 @@ exports.getAllTeachers = (req, res, next) => {
 
 exports.getTeacherById = (req, res, next) => {
     const teacherId = req.params.id
-    conn.query(`SELECT * FROM teacher INNER JOIN compte ON teacher.id_compte=compte.id_compte where id = ${teacherId}`, function(err, data, fields) {
+    conn.query(`SELECT * FROM teacher INNER JOIN compte ON teacher.id_compte=compte.id_compte where id_teacher = ${teacherId}`, function(err, data, fields) {
         res.status(200).json({
             status: "success",
             data: data
@@ -95,7 +95,7 @@ exports.UpdateTeacher = async(req, res, next) => {
     SET teacher.firstname = '${req.body.firstname}' ,teacher.middlename = '${req.body.middlename}',
     teacher.lastname = '${req.body.lastname}', teacher.email = '${req.body.email}',compte.username = '${req.body.username}',
     compte.password = '${req.body.password}',teacher.birthday= '${req.body.birthday}',teacher.gender='${req.body.gender}'
-    ,teacher.status='${req.body.status}' WHERE id = ${teachid_2}`,
+    ,teacher.status='${req.body.status}' WHERE id_teacher = ${teachid_2}`,
 
         function(err, result) {
             if (err) throw err;
@@ -114,10 +114,11 @@ exports.UpdateTeacher = async(req, res, next) => {
 
 
 
+
 exports.updateTeacherStatus = async(req, res, next) => {
     const teachid_3 = req.params.id
 
-    await conn.query(`UPDATE teacher SET status = '${req.body.status}' WHERE id = ${teachid_3}`, function(err, result) {
+    await conn.query(`UPDATE teacher SET status = '${req.body.status}' WHERE id_teacher = ${teachid_3}`, function(err, result) {
         if (err) throw err;
         res.status(201).json({
             status: "success",

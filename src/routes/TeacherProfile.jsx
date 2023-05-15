@@ -7,8 +7,6 @@ import {
     MDBTabsPane
   } from 'mdb-react-ui-kit';
   import { Form, useLoaderData,redirect } from 'react-router-dom';
-  import {data1} from '../utils/data'
-  import { MDBDataTable } from 'mdbreact';
   import axios from 'axios';
 
 
@@ -17,9 +15,8 @@ import {
   export async function action({request,params}) {
     const formData = await request.formData()
     const data = Object.fromEntries(formData);
-    console.log(data)
-    const variable = JSON.parse(localStorage.getItem('jwttoken'))
-    await axios.put(`http://localhost:4000/accounts/updateTeacher/${variable.compte_id}`,data ) 
+    await axios.put(`http://localhost:4000/accounts/updateTeacher/${data.id_teacher}`,data ) 
+    location.reload()
     return redirect(`/teacherProfile`);
   }
   
@@ -82,12 +79,12 @@ export default function TeacherProfile() {
          <hr /> 
          <div className='flex flex-col space-y-3 mt-4'>
            <div className='flex flex-row justify-between '>
-             <div><b>employee_id:</b>{teacher.id}</div>
+             <div><b>employee_id:</b>{teacher.id_teacher}</div>
              <div><b>email:</b>{teacher.email}</div>
            </div>
 
            <div className='flex flex-row justify-between '>
-             <div><b>name:</b>{teacher.lastname} {teacher.middlename} {teacher.lastname}</div>
+             <div><b>name:</b>{teacher.lastname} {teacher.middlename} {teacher.firstname}</div>
              <div><b>bday:</b>{teacher.birthday}</div>
            </div>
 
@@ -293,6 +290,8 @@ export default function TeacherProfile() {
                 </div>
 
                 <input type="hidden" name='status' value={teacher.status} />
+
+                <input type="hidden" name='id_teacher' value={teacher.id_teacher} />
 
 
 

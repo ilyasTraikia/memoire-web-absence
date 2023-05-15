@@ -57,7 +57,7 @@ export default function ManageStudentsTable(props) {
     
         return {
             number: index,
-            id: element.id,
+            id: element.id_student,
             name:  element.firstname + ' '+ element.middlename + ' '+ element.lastname,
             sections:element.strand + '  ' + element.year + '  '+element.section,
             gender:element.gender,
@@ -65,12 +65,12 @@ export default function ManageStudentsTable(props) {
             option:
              [<form  onSubmit={async (e)=> { 
               e.preventDefault()
-                await axios.put(`http://localhost:4000/admin/updateStudentStatus/${element.id}`,element.status == 'active' ? {status:'inactive'}:{status:'active'})
+                await axios.put(`http://localhost:4000/admin/updateStudentStatus/${element.id_student}`,element.status == 'active' ? {status:'inactive'}:{status:'active'})
                location.reload()
                 }} >
               <MDBBtn type='submit' name="status" color={element.status == 'active' ? 'danger':'success'} size="sm">{element.status == 'active' ? 'Desactivate':'Activate'}</MDBBtn>
              </form>],
-              view: [<Link to={`profile/${element.id}`}> <MDBBtn color="primary" size="sm">view</MDBBtn></Link>],
+              view: [<Link to={`profile/${element.id_student}`}> <MDBBtn color="primary" size="sm">view</MDBBtn></Link>],
       
       
       
