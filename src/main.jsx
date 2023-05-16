@@ -26,6 +26,7 @@ import  {action as AssigntAction} from './routes/Assign'
 import TeacherProfileUrl, { loader as TeacherUrlLoader} from './routes/TeacherProfileUrl'
 import  {action as UpdateTeacherUrlAction} from './routes/TeacherProfileUrl'
 import {loader as recordsLoader} from './routes/AttendanceRecord'
+import {loader as QRLoader} from './routes/QRScanner'
 
 
 
@@ -109,7 +110,8 @@ const router = createBrowserRouter([
       },
       {
         path:"QRscanner",
-        element:<QRScanner />
+        element:<QRScanner />,
+        loader:QRLoader
       },
       {
         path:"attandanceRecord",
