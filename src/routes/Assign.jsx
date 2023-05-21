@@ -71,7 +71,7 @@ export default function Assign() {
                   <select name='teacher' className='relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'>
                     <option value=''disabled>Choose</option>
                     {teachers.map((element,index)=>{
-                      return  <option key={index} value={element.id}>{element.firstname + ' '+ element.middlename + ' '+ element.lastname}</option>
+                      return  <option key={index} value={element.id_teacher}>{element.firstname + ' '+ element.middlename + ' '+ element.lastname}</option>
                     })}
                   </select>
                 </div>
@@ -102,7 +102,7 @@ export default function Assign() {
                   <select name='groupe' className='relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'>
                     <option value=''disabled>Choose</option>
                     {groups.map((element,index)=>{
-                       return <option key={index} value={element.id}>{element.id_groupe}</option>
+                       return <option key={index} value={element.id_groupe}>{element.id_groupe}</option>
                     })}
                   </select>
                 </div>

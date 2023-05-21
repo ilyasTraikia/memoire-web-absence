@@ -9,11 +9,11 @@ Content-Type: application/json
    "year":"Grade12","strand" : "ABM","section":"A"
 }
 ###
-POST http://localhost:4000/accounts/login
+POST http://localhost:4000/accounts/loginTwo
 Content-Type: application/json
 
 {
-   "username":"Username","password" : "gdfgfd"
+   "username":"student11","password" : "sdqdqsd"
 }
 ###
 GET http://localhost:4000/admin/students
@@ -32,4 +32,11 @@ Content-Type: application/json
 
 {
    "day":"Username","start_time" : "gdfgfd","end_time":"","id_groupe":1,"id_module":1,"id_teacher":1
+}
+###
+POST http://localhost:4000/accounts/addPresenceAndroid
+Content-Type: application/json
+
+{
+   "id_student":3,"id_seance":6,"presence":"present","retard":0
 }

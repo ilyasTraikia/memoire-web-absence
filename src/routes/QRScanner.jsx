@@ -30,8 +30,10 @@ export default function QRScanner() {
    let seanse = data.find((element)=> {
        return  element.id_seance == inputValue
     })
-    const QrcodeValue = JSON.stringify(seanse)
    
+
+    const QrcodeValue = JSON.stringify(seanse)
+
     setValue(QrcodeValue)
   }
 

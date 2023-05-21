@@ -12,6 +12,8 @@ router.put('/updateTeacher/:id', accountController.UpdateTeacher)
 router.put('/updateTeacherStatus/:id', accountController.updateTeacherStatus)
 
 router.post('/login', accountController.login)
+router.post('/loginTwo', accountController.loginAndroid)
+router.post('/addPresenceAndroid', accountController.insertPresenceAndroid)
 
 
 

@@ -168,3 +168,65 @@ exports.login = async(req, res, next) => {
 
 
 }
+
+
+
+
+
+exports.loginAndroid = async(req, res, next) => {
+
+    const username = req.body.username
+    const password = req.body.password
+        // const compteType = req.body.compteType
+
+    conn.query(`SELECT * FROM compte   INNER JOIN student ON compte.id_compte = student.id_compte
+    where username = '${username}' and password = '${password}' 
+    `, function(err, data, fields) {
+        if (err) throw err;
+
+        if (data.length != 0) {
+
+            res.status(200).json({
+                id_student: data[0].id_student,
+                username: data[0].username,
+                password: data[0].password
+
+            })
+        } else {
+
+            res.status(401).json({
+                status: "cant find user",
+                data: data
+            })
+        }
+    })
+
+
+
+}
+
+
+
+
+
+
+
+
+
+exports.insertPresenceAndroid = async(req, res, next) => {
+    const values = Object.values(req.body)
+
+    conn.query("INSERT INTO presence(id_seance,id_student,presence,retard) VALUES ?", [
+        [values]
+    ], function(err, result) {
+        if (err)
+            throw err
+        res.status(201).json({
+            status: "success",
+            message: "presence inserted",
+        })
+
+
+    })
+
+}

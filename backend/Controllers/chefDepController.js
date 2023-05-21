@@ -37,6 +37,7 @@ exports.insertSeance = async(req, res, next) => {
 
     })
 
+
 }
 
 exports.getAllSeances = (req, res, next) => {
@@ -52,7 +53,7 @@ exports.getAllSeances = (req, res, next) => {
 
 exports.getAllSeancesByTeacher = (req, res, next) => {
     const compte_id = req.params.id
-    conn.query(`SELECT * FROM seance
+    conn.query(`SELECT seance.id_seance,seance.day,seance.id_groupe FROM seance
                 INNER JOIN subject ON seance.id_module = subject.id_module  
                 INNER JOIN teacher ON seance.id_teacher = teacher.id_teacher
                 WHERE seance.id_teacher = (SELECT id_teacher FROM teacher WHERE id_compte = ${compte_id} )
