@@ -7,7 +7,7 @@ import 'mdbreact/dist/css/mdb.css';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import App from './main/App'
 import './style/index.css'
-import { Dashboard, ManageTeachers, ManageStudents, TeacherProfile, AttendanceRecord, ChangePassword, QRScanner, StudentRecord,AddStrand,AddSubject,Assign,SemesterSwitch,Login,StudentProfile,IndexPage,ChefDepartementProfile} from './routes';
+import { Dashboard, ManageTeachers, ManageStudents, TeacherProfile, AttendanceRecord, ChangePassword, QRScanner, StudentRecord,AddStrand,AddSubject,Assign,Login,StudentProfile,IndexPage,ChefDepartementProfile,Justifications,AdminProfile} from './routes';
 import {action as AddTeacherAction} from './routes/ManageTeachers'
 import {loader as ManageTeachersLoader} from './routes/ManageTeachers'
 import { loader as TeacherLoader} from './routes/TeacherProfile'
@@ -27,6 +27,11 @@ import TeacherProfileUrl, { loader as TeacherUrlLoader} from './routes/TeacherPr
 import  {action as UpdateTeacherUrlAction} from './routes/TeacherProfileUrl'
 import {loader as recordsLoader} from './routes/AttendanceRecord'
 import {loader as QRLoader} from './routes/QRScanner'
+import {loader as JustificationsLoader} from './routes/Justifications'
+import { loader as ChefDepLoader} from './routes/ChefDepartementProfile'
+import  {action as UpdateChefDepAction} from './routes/ChefDepartementProfile'
+import { loader as AdminLoader} from './routes/AdminProfile'
+import  {action as UpdateAdminAction} from './routes/AdminProfile'
 
 
 
@@ -39,6 +44,12 @@ const router = createBrowserRouter([
       {
         index:true,
         element:<IndexPage />
+      },
+      {
+        path:"/AdminProfile",
+        element:<AdminProfile />,
+        loader:AdminLoader,
+        action:UpdateAdminAction
       },
       {
         path:"dashboard",
@@ -123,7 +134,14 @@ const router = createBrowserRouter([
       // chef departement routes
       {
         path:"chefDepartementProfile",
-        element:<ChefDepartementProfile />
+        element:<ChefDepartementProfile />,
+        loader:ChefDepLoader,
+        action:UpdateChefDepAction
+      },
+      {
+        path:"Justifications",
+        element:<Justifications />,
+        loader:JustificationsLoader
       }
 
 

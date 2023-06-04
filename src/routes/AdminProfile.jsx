@@ -15,9 +15,9 @@ import {
   export async function action({request,params}) {
     const formData = await request.formData()
     const data = Object.fromEntries(formData);
-    await axios.put(`http://localhost:4000/accounts/updateChefdep/${data.id_chefDepartement }`,data ) 
+    await axios.put(`http://localhost:4000/accounts/updateAdmin/${data.id_admin }`,data ) 
     location.reload()
-    return redirect(`/chefDepartementProfile`);
+    return redirect(`/AdminProfile`);
   }
   
   
@@ -25,8 +25,8 @@ import {
 
   export async function loader({ params }) {
     const variable = JSON.parse(localStorage.getItem('jwttoken'))
-    const chefdep = await axios.get(`http://localhost:4000/accounts/chefdep/${variable.compte_id}`)
-    return  chefdep;
+    const admin = await axios.get(`http://localhost:4000/accounts/admin/${variable.compte_id}`)
+    return  admin;
   }
   
 
@@ -35,9 +35,9 @@ import {
 
 
 
-export default function ChefDepartementProfile() {
+export default function AdminProfile() {
 
-  const chefdep = useLoaderData().data.data[0]
+  const admin = useLoaderData().data.data[0]
 
     const [basicActive, setBasicActive] = useState('tab1');
 
@@ -75,21 +75,21 @@ export default function ChefDepartementProfile() {
 
         <MDBTabsPane show={basicActive === 'tab1'}>
 
-         <div className='py-2 text-xl font-bold'>{chefdep.lastname_chefdep} {chefdep.middlename_chefdep} {chefdep.firstname_chefdep}</div>  
+         <div className='py-2 text-xl font-bold'>{admin.lastname_admin} {admin.middlename_admin} {admin.firstname_admin}</div>  
          <hr /> 
          <div className='flex flex-col space-y-3 mt-4'>
            <div className='flex flex-row justify-between '>
-             <div><b>employee_id:</b>{chefdep.id_chefDepartement}</div>
-             <div><b>email:</b>{chefdep.email_chefdep}</div>
+             <div><b>employee_id:</b>{admin.id_admin}</div>
+             <div><b>email:</b>{admin.email_admin}</div>
            </div>
 
            <div className='flex flex-row justify-between '>
-             <div><b>name:</b>{chefdep.lastname_chefdep} {chefdep.middlename_chefdep} {chefdep.firstname_chefdep}</div>
-             <div><b>bday:</b>{chefdep.date_naiss_chefdep}</div>
+             <div><b>name:</b>{admin.lastname_admin} {admin.middlename_admin} {admin.firstname_admin}</div>
+             <div><b>bday:</b>{admin.birthday_admin}</div>
            </div>
 
            <div className='flex flex-row justify-between '>
-             <div><b>gender:</b> {chefdep.gender_chefdep}</div>
+             <div><b>gender:</b> {admin.gender}</div>
            </div>
          </div>
 
@@ -135,7 +135,7 @@ export default function ChefDepartementProfile() {
         <MDBTabsPane show={basicActive === 'tab2'}>
 
 
-        <div className='py-2 text-xl font-bold'>{chefdep.lastname_chefdep} {chefdep.middlename_chefdep} {chefdep.firstname_chefdep}</div>  
+        <div className='py-2 text-xl font-bold'>{admin.lastname_admin} {admin.middlename_admin} {admin.firstname_admin}</div>  
         <hr />
 
 
@@ -149,7 +149,7 @@ export default function ChefDepartementProfile() {
                     </label>
                     <input
                       type='text'
-                      defaultValue={chefdep.firstname_chefdep}
+                      defaultValue={admin.firstname_admin}
                       name='firstname'
                       className='w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
                     />
@@ -162,7 +162,7 @@ export default function ChefDepartementProfile() {
                     <input
                       type='text'
                       name='middlename'
-                      defaultValue={chefdep.middlename_chefdep}
+                      defaultValue={admin.middlename_admin}
                       className='w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
                     />
                   </div>
@@ -187,7 +187,7 @@ export default function ChefDepartementProfile() {
                     <input
                       type='text'
                       name='lastname'
-                      defaultValue={chefdep.lastname_chefdep}
+                      defaultValue={admin.lastname_admin}
                       className='w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
                     />
                   </div>
@@ -199,7 +199,7 @@ export default function ChefDepartementProfile() {
                     <input
                       type='email'
                       name='email'
-                      defaultValue={chefdep.email_chefdep}
+                      defaultValue={admin.email_admin}
                       className='w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
                     />
                   </div>
@@ -223,7 +223,7 @@ export default function ChefDepartementProfile() {
                     <input
                       type='text'
                       name='username'
-                      defaultValue={chefdep.username}
+                      defaultValue={admin.username}
                       className='w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
                     />
                   </div>
@@ -235,7 +235,7 @@ export default function ChefDepartementProfile() {
                     <input
                       type='password'
                       name='password'
-                      defaultValue={chefdep.password}
+                      defaultValue={admin.password}
                       className='w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
                     />
                   </div>
@@ -265,7 +265,7 @@ export default function ChefDepartementProfile() {
                      <input
                     type='date'
                     name='birthday'
-                    defaultValue={chefdep.date_naiss_chefdep}
+                    defaultValue={admin.gender_admin}
                     className='w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'
                      />
 
@@ -279,7 +279,7 @@ export default function ChefDepartementProfile() {
                   Gender
                   </label>
                   <div className='relative z-20 bg-transparent dark:bg-form-input'>
-                    <select name='gender' defaultValue={chefdep.gender_chefdep} placeholder='Male' className='relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'>
+                    <select name='gender' defaultValue={admin.gender} placeholder='Male' className='relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'>
                       <option value=''>Type your gender</option>
                       <option value='Female'>Female</option>
                       <option value='Male'>Male</option>
@@ -289,7 +289,7 @@ export default function ChefDepartementProfile() {
                 </div>
 
 
-                <input type="hidden" name='id_chefDepartement' value={chefdep.id_chefDepartement} />
+                <input type="hidden" name='id_admin' value={admin.id_admin} />
 
 
 

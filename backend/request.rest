@@ -40,3 +40,5 @@ Content-Type: application/json
 {
    "id_student":3,"id_seance":6,"presence":"present","retard":0
 }
+###
+GET http://localhost:4000/chefDep/getAllJustifications

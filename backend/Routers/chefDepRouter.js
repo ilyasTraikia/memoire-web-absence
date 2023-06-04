@@ -6,8 +6,11 @@ const chefDepController = require('../Controllers/chefDepController')
 router.get('/getAllGroups', chefDepController.getAllGroups)
 router.get('/getAllSalles', chefDepController.getAllSalles)
 router.get('/getAllSeances', chefDepController.getAllSeances)
+router.get('/getAllJustifications', chefDepController.getAllJustifications)
 router.get('/getAllSeances/:id', chefDepController.getAllSeancesByTeacher)
 router.post('/insertSeance', chefDepController.insertSeance)
+router.put('/updateJustificationStatus/:id', chefDepController.UpdateJustificationStatus)
+router.put('/updatePresenceStatus/:id', chefDepController.UpdatePresenceStatus)
 
 
 

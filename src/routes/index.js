@@ -15,6 +15,8 @@ import StudentProfile from "./StudentProfile"
 import IndexPage from "./IndexPage";
 import ChefDepartementProfile from "./ChefDepartementProfile";
 import TeacherProfileUrl from "./TeacherProfileUrl";
+import Justifications from "./Justifications";
+import AdminProfile from "./AdminProfile";
 
 export {
     Dashboard,
@@ -33,5 +35,7 @@ export {
     StudentProfile,
     IndexPage,
     ChefDepartementProfile,
-    TeacherProfileUrl
+    TeacherProfileUrl,
+    Justifications,
+    AdminProfile
 }

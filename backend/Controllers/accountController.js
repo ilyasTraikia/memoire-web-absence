@@ -46,6 +46,9 @@ exports.getTeacherPById = (req, res, next) => {
 
 
 
+
+
+
 exports.insertTeacher = async(req, res, next) => {
     const object = req.body
 
@@ -129,6 +132,111 @@ exports.updateTeacherStatus = async(req, res, next) => {
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+exports.getChefDepByPId = (req, res, next) => {
+    const chefdepId = req.params.id
+    conn.query(`SELECT * FROM chefdepartement INNER JOIN compte ON chefdepartement.id_compte=compte.id_compte where compte.id_compte = ${chefdepId}`, function(err, data, fields) {
+
+        res.status(200).json({
+            status: "success",
+            data: data
+        })
+    })
+}
+
+
+
+
+
+
+
+exports.UpdateChefDep = async(req, res, next) => {
+    const chefdep2_id = req.params.id
+
+
+
+    await conn.query(`UPDATE chefdepartement INNER JOIN compte ON chefdepartement.id_compte = compte.id_compte 
+    SET chefdepartement.firstname_chefdep = '${req.body.firstname}' ,chefdepartement.middlename_chefdep = '${req.body.middlename}',
+    chefdepartement.lastname_chefdep = '${req.body.lastname}', chefdepartement.	email_chefdep = '${req.body.email}',compte.username = '${req.body.username}',
+    compte.password = '${req.body.password}',chefdepartement.date_naiss_chefdep= '${req.body.birthday}',chefdepartement.gender_chefdep='${req.body.gender}'
+     WHERE 	id_chefDepartement  = ${chefdep2_id}`,
+
+        function(err, result) {
+            if (err) throw err;
+            res.status(201).json({
+                status: "success",
+                message: "chefdepartement updated",
+            });
+
+
+        })
+}
+
+
+
+
+
+
+
+
+
+exports.getAdminByPId = (req, res, next) => {
+    const adminId = req.params.id
+    conn.query(`SELECT * FROM admin INNER JOIN compte ON admin.id_compte=compte.id_compte where compte.id_compte = ${adminId}`, function(err, data, fields) {
+
+        res.status(200).json({
+            status: "success",
+            data: data
+        })
+    })
+}
+
+
+
+
+
+
+exports.UpdateAdminDep = async(req, res, next) => {
+    const admin2_id = req.params.id
+
+
+
+    await conn.query(`UPDATE admin INNER JOIN compte ON admin.id_compte = compte.id_compte 
+    SET admin.firstname_admin = '${req.body.firstname}' ,admin.middlename_admin = '${req.body.middlename}',
+    admin.lastname_admin = '${req.body.lastname}', admin.email_admin = '${req.body.email}',compte.username = '${req.body.username}',
+    compte.password = '${req.body.password}',admin.birthday_admin= '${req.body.birthday}',admin.gender='${req.body.gender}'
+     WHERE 	id_admin  = ${admin2_id}`,
+
+        function(err, result) {
+            if (err) throw err;
+            res.status(201).json({
+                status: "success",
+                message: "admin updated",
+            });
+
+
+        })
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
