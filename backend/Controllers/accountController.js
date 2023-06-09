@@ -160,6 +160,7 @@ exports.getChefDepByPId = (req, res, next) => {
 
 
 
+
 exports.UpdateChefDep = async(req, res, next) => {
     const chefdep2_id = req.params.id
 
@@ -233,6 +234,36 @@ exports.UpdateAdminDep = async(req, res, next) => {
 
 
 
+exports.getStudentAbsenceById = (req, res, next) => {
+    const student_id_3 = req.params.id
+    conn.query(`SELECT
+               presence.id_presence,
+               presence.presence,
+               seance.day,
+               seance.start_time,
+               seance.end_time,
+               teacher.firstname,
+               teacher.middlename,
+               teacher.lastname,
+               subject.name,
+               salle.type_salle,
+               justification.etat
+         
+         FROM presence 
+        INNER JOIN seance ON presence.id_seance = seance.id_seance 
+        INNER JOIN salle ON salle.id_salle= seance.id_salle
+        INNER JOIN teacher ON seance.id_teacher  = teacher.id_teacher  
+        INNER JOIN subject ON subject.id_module = seance.id_module 
+        LEFT JOIN justification ON justification.id_presence = presence.id_presence
+
+        WHERE presence.id_student = ${student_id_3} AND presence.presence = 'absent' `, function(err, data, fields) {
+
+        res.status(200).json(
+            data
+        )
+    })
+}
+
 
 
 
@@ -297,7 +328,14 @@ exports.loginAndroid = async(req, res, next) => {
             res.status(200).json({
                 id_student: data[0].id_student,
                 username: data[0].username,
-                password: data[0].password
+                password: data[0].password,
+                firstname: data[0].firstname,
+                middlename: data[0].middlename,
+                lastname: data[0].lastname,
+                birthday: data[0].birthday,
+                gender: data[0].gender,
+                status: data[0].status,
+                id_groupe: data[0].id_groupe
 
             })
         } else {
@@ -332,6 +370,31 @@ exports.insertPresenceAndroid = async(req, res, next) => {
         res.status(201).json({
             status: "success",
             message: "presence inserted",
+        })
+
+
+    })
+
+}
+
+
+
+
+
+
+
+
+exports.insertJustificationAndroid = async(req, res, next) => {
+    const values = Object.values(req.body)
+
+    conn.query("INSERT INTO justification(contenu_just,id_presence) VALUES ?", [
+        [values]
+    ], function(err, result) {
+        if (err)
+            throw err
+        res.status(201).json({
+            status: "success",
+            message: "justification inserted",
         })
 
 

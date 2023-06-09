@@ -53,13 +53,13 @@ export default function StatsThree() {
             <form className='flex flex-row space-x-4'>
 
 
-                <div className=' bg-white'>
+                {/* <div className=' bg-white'>
                   <select className=' w-full appearance-none rounded border bg-white border-stroke bg-transparent py-3 px-12 outline-none transition focus:border-primary active:border-primary '>
                     <option value=''>School year</option>
                     <option value=''>UK</option>
                     <option value=''>Canada</option>
                   </select>
-                </div>
+                </div> */}
               
 
                 <div className=' bg-white'>
@@ -73,9 +73,11 @@ export default function StatsThree() {
 
                 <div className=' bg-white'>
                   <select className=' w-full appearance-none rounded border bg-white border-stroke bg-transparent py-3 px-12 outline-none transition focus:border-primary active:border-primary '>
-                    <option value=''>Year&Section</option>
-                    <option value=''>UK</option>
-                    <option value=''>Canada</option>
+                    <option value='' disabled>Groupe</option>
+                    <option value='1'>1</option>
+                    <option value='2'>2</option>
+                    <option value='3'>3</option>
+                    <option value='4'>4</option>
                   </select>
                 </div>
 

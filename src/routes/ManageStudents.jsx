@@ -150,15 +150,15 @@ export default function ManageStudents() {
 
                   <div className='mb-4.5 mt-1'>
                   <label className='mb-2.5 block text-black dark:text-white'>
-                  Year,Section & Strand
+                  Groupe
                   </label>
                   <div className='relative z-20 bg-transparent dark:bg-form-input'>
-                    <select name='SectionYear' className='relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'>
-                      <option value='1' disabled>ABM Grade11 A</option>
-                      <option value='2'>ABM Grade12 A</option>
-                      <option value='3'>HUMUSS Grade12 B</option>
-                      <option value='4'>HE Grade12 B</option>
-                      <option value='5'>HE Grade12 1</option>
+                    <select name='id_groupe' className='relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'>
+                      <option value='' disabled>choose groupe</option>
+                      <option value='1'>1</option>
+                      <option value='2'>2</option>
+                      <option value='3'>3</option>
+                      <option value='4'>4</option>
                     </select>
                   </div>
                 </div>

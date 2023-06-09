@@ -5,7 +5,7 @@ import TeacherProfile from "./TeacherProfile";
 import AttendanceRecord from "./AttendanceRecord";
 import ChangePassword from "./ChangePassword";
 import QRScanner from "./QRScanner";
-import StudentRecord from "./StudentRecord";
+import MannuelAttendance from "./MannuelAttendance";
 import AddStrand from "./AddStrand";
 import AddSubject from "./AddSubject";
 import Assign from "./Assign";
@@ -17,6 +17,7 @@ import ChefDepartementProfile from "./ChefDepartementProfile";
 import TeacherProfileUrl from "./TeacherProfileUrl";
 import Justifications from "./Justifications";
 import AdminProfile from "./AdminProfile";
+import SendAnnounce from "./SendAnnounce";
 
 export {
     Dashboard,
@@ -26,7 +27,7 @@ export {
     AttendanceRecord,
     ChangePassword,
     QRScanner,
-    StudentRecord,
+    MannuelAttendance,
     AddStrand,
     AddSubject,
     Assign,
@@ -37,5 +38,6 @@ export {
     ChefDepartementProfile,
     TeacherProfileUrl,
     Justifications,
-    AdminProfile
+    AdminProfile,
+    SendAnnounce
 }

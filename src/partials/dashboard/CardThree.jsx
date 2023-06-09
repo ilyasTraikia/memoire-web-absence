@@ -21,7 +21,7 @@ export default function CardThree() {
               
               </EditMenu>
             </header>
-            <h2 className="text-lg font-semibold text-white mb-2">Student | per Sem</h2>
+            <h2 className="text-lg font-semibold text-white mb-2">Students</h2>
             
           </div>
 

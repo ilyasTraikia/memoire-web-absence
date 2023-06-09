@@ -92,7 +92,7 @@ export default function StudentProfile() {
     
                <div className='flex flex-row justify-between '>
                <div><b>status:</b> {student.status}</div>
-               <div><b>Year&Section:</b> {student.strand + '  ' + student.year + '  '+student.section}</div>
+               <div><b>Groupe:</b> {student.id_groupe}</div>
                </div>
              </div>
     
@@ -206,14 +206,15 @@ export default function StudentProfile() {
 
                   <div className='mb-4.5 mt-1'>
                   <label className='mb-2.5 block text-black dark:text-white'>
-                  Year,Section & Strand
+                  Groupe
                   </label>
                   <div className='relative z-20 bg-transparent dark:bg-form-input'>
-                    <select   defaultValue={student.SectionYear}  name='SectionYear' className='relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'>
-                      <option value='1' disabled>ABM Grade11 A</option>
-                      <option value='2'>ABM Grade12 A</option>
-                      <option value='3'>HUMUSS Grade12 B</option>
-                      <option value='4'>HE Grade12 B</option>
+                    <select name='id_groupe' defaultValue={student.id_groupe} className='relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary'>
+                      <option value='' disabled>choose groupe</option>
+                      <option value='1'>1</option>
+                      <option value='2'>2</option>
+                      <option value='3'>3</option>
+                      <option value='4'>4</option>
                     </select>
                   </div>
                 </div>

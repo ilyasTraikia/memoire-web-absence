@@ -13,7 +13,7 @@ POST http://localhost:4000/accounts/loginTwo
 Content-Type: application/json
 
 {
-   "username":"student11","password" : "sdqdqsd"
+   "username":"student2","password" : "student2"
 }
 ###
 GET http://localhost:4000/admin/students
@@ -27,11 +27,11 @@ Content-Type: application/json
    "status":"active"
 }
 ###
-POST http://localhost:4000/chefDep/insertSeance
+POST http://localhost:4000/teacher/insertAnnonce/90
 Content-Type: application/json
 
 {
-   "day":"Username","start_time" : "gdfgfd","end_time":"","id_groupe":1,"id_module":1,"id_teacher":1
+   "id_groupe":3,"contenu_annonce" : "gdfgfd"
 }
 ###
 POST http://localhost:4000/accounts/addPresenceAndroid
@@ -42,3 +42,9 @@ Content-Type: application/json
 }
 ###
 GET http://localhost:4000/chefDep/getAllJustifications
+###
+GET http://localhost:4000/accounts/studentAbsence/4
+###
+GET http://localhost:4000/teacher/getAnnonceByTeacher/89
+###
+GET http://localhost:4000/teacher/getAnnonceByGroupe/4

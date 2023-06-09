@@ -17,6 +17,10 @@ router.put('/updateChefdep/:id', accountController.UpdateChefDep)
 router.get('/admin/:id', accountController.getAdminByPId)
 router.put('/updateAdmin/:id', accountController.UpdateAdminDep)
 
+router.get('/studentAbsence/:id', accountController.getStudentAbsenceById)
+
+router.post('/insertJustification', accountController.insertJustificationAndroid)
+
 router.post('/login', accountController.login)
 router.post('/loginTwo', accountController.loginAndroid)
 router.post('/addPresenceAndroid', accountController.insertPresenceAndroid)

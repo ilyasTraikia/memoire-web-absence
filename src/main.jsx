@@ -7,7 +7,7 @@ import 'mdbreact/dist/css/mdb.css';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import App from './main/App'
 import './style/index.css'
-import { Dashboard, ManageTeachers, ManageStudents, TeacherProfile, AttendanceRecord, ChangePassword, QRScanner, StudentRecord,AddStrand,AddSubject,Assign,Login,StudentProfile,IndexPage,ChefDepartementProfile,Justifications,AdminProfile} from './routes';
+import { Dashboard, ManageTeachers, ManageStudents, TeacherProfile, AttendanceRecord, ChangePassword, QRScanner, MannuelAttendance,AddStrand,AddSubject,Assign,Login,StudentProfile,IndexPage,ChefDepartementProfile,Justifications,AdminProfile,SendAnnounce} from './routes';
 import {action as AddTeacherAction} from './routes/ManageTeachers'
 import {loader as ManageTeachersLoader} from './routes/ManageTeachers'
 import { loader as TeacherLoader} from './routes/TeacherProfile'
@@ -32,6 +32,9 @@ import { loader as ChefDepLoader} from './routes/ChefDepartementProfile'
 import  {action as UpdateChefDepAction} from './routes/ChefDepartementProfile'
 import { loader as AdminLoader} from './routes/AdminProfile'
 import  {action as UpdateAdminAction} from './routes/AdminProfile'
+import {loader as MannuelSeanceLoader} from './routes/MannuelAttendance'
+import  {action as AddAnnonceAction} from './routes/SendAnnounce'
+import {loader as AnnoncesLoader} from './routes/SendAnnounce'
 
 
 
@@ -116,8 +119,9 @@ const router = createBrowserRouter([
         element:<ChangePassword />
       },
       {
-        path:"studentRecord",
-        element:<StudentRecord />
+        path:"marquerAbsenceManuellement",
+        element:<MannuelAttendance />,
+        loader:MannuelSeanceLoader
       },
       {
         path:"QRscanner",
@@ -129,7 +133,17 @@ const router = createBrowserRouter([
         element:<AttendanceRecord />,
         loader:recordsLoader
       },
+      {
+        path:"SendAnnouncement",
+        element: <SendAnnounce />,
+        loader:AnnoncesLoader,
+        action:AddAnnonceAction
+      },
+    
        
+
+
+
      
       // chef departement routes
       {

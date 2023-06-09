@@ -158,31 +158,31 @@ function SidebarTeacher({ sidebarOpen, setSidebarOpen }) {
           
            
              
-              {/* Studens record*/}
-              <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('studentRecord') && 'bg-slate-900'}`}>
+              {/* Mannuel attendance*/}
+              <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('marquerAbsenceManuellement') && 'bg-slate-900'}`}>
                 <NavLink
                   end
-                  to="/studentRecord"
+                  to="/marquerAbsenceManuellement"
                   className={`block text-slate-200 truncate transition duration-150 ${
-                    pathname.includes('studentRecord') ? 'hover:text-slate-200' : 'hover:text-white'
+                    pathname.includes('marquerAbsenceManuellement') ? 'hover:text-slate-200' : 'hover:text-white'
                   }`}
                 >
                   <div className="flex items-center">
                   <svg className="shrink-0 h-6 w-6" viewBox="0 0 24 24">
                               <path
-                                className={`fill-current ${pathname.includes('studentRecord') ? 'text-indigo-300' : 'text-slate-400'}`}
+                                className={`fill-current ${pathname.includes('marquerAbsenceManuellement') ? 'text-indigo-300' : 'text-slate-400'}`}
                                 d="M13 15l11-7L11.504.136a1 1 0 00-1.019.007L0 7l13 8z"
                               />
                               <path
-                                className={`fill-current ${pathname.includes('studentRecord') ? 'text-indigo-600' : 'text-slate-700'}`}
+                                className={`fill-current ${pathname.includes('marquerAbsenceManuellement') ? 'text-indigo-600' : 'text-slate-700'}`}
                                 d="M13 15L0 7v9c0 .355.189.685.496.864L13 24v-9z"
                               />
                               <path
-                                className={`fill-current ${pathname.includes('studentRecord') ? 'text-indigo-500' : 'text-slate-600'}`}
+                                className={`fill-current ${pathname.includes('marquerAbsenceManuellement') ? 'text-indigo-500' : 'text-slate-600'}`}
                                 d="M13 15.047V24l10.573-7.181A.999.999 0 0024 16V8l-11 7.047z"
                               />
                             </svg>
-                    <span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Student Record</span>
+                    <span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Manual attendance</span>
                   </div>
                 </NavLink>
               </li>
@@ -234,7 +234,40 @@ function SidebarTeacher({ sidebarOpen, setSidebarOpen }) {
                   </div>
                 </NavLink>
               </li>
+
+
+
+
+
+              
+
+
+
+
+
+
+              {/* Send announcement*/}
+              <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('SendAnnouncement') && 'bg-slate-900'}`}>
+                <NavLink
+                  end
+                  to="/SendAnnouncement"
+                  className={`block text-slate-200 truncate transition duration-150 ${
+                    pathname.includes('SendAnnouncement') ? 'hover:text-slate-200' : 'hover:text-white'
+                  }`}
+                >
+                  <div className="flex items-center">
+                   <svg xmlns="http://www.w3.org/2000/svg" className="shrink-0 h-6 w-6" height="1em" viewBox="0 0 512 512">
+                     <path d="M480 32c0-12.9-7.8-24.6-19.8-29.6s-25.7-2.2-34.9 6.9L381.7 53c-48 48-113.1 75-181 75H192 160 64c-35.3 0-64 28.7-64 64v96c0 35.3 28.7 64 64 64l0 128c0 17.7 14.3 32 32 32h64c17.7 0 32-14.3 32-32V352l8.7 0c67.9 0 133 27 181 75l43.6 43.6c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6V300.4c18.6-8.8 32-32.5 32-60.4s-13.4-51.6-32-60.4V32zm-64 76.7V240 371.3C357.2 317.8 280.5 288 200.7 288H192V192h8.7c79.8 0 156.5-29.8 215.3-83.3z"
+                          className={`fill-current ${pathname.includes('SendAnnouncement') ? 'text-indigo-300' : 'text-slate-400'}`}
+                     />
+                   </svg>
+                    <span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Send announcement</span>
+                  </div>
+                </NavLink>
+              </li>
       
+
+
             
             </ul>
           </div>

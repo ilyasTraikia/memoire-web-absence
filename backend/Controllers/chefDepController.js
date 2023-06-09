@@ -51,6 +51,35 @@ exports.getAllSeances = (req, res, next) => {
     })
 }
 
+
+
+
+
+exports.getAllSeancesTwo = (req, res, next) => {
+    const compte_id = req.params.id
+    conn.query(`SELECT seance.id_seance,seance.day,seance.id_groupe,student.id_student FROM seance
+                INNER JOIN subject ON seance.id_module = subject.id_module  
+                INNER JOIN teacher ON seance.id_teacher = teacher.id_teacher
+                INNER JOIN groupe ON seance.id_groupe = groupe.id_groupe
+                LEFT JOIN student ON groupe.id_groupe = student.id_groupe   
+                WHERE seance.id_teacher = (SELECT id_teacher FROM teacher WHERE id_compte = ${compte_id}   `, function(err, data, fields) {
+        res.status(200).json({
+            status: "success",
+            data: data
+        })
+    })
+}
+
+
+
+
+
+
+
+
+
+
+
 exports.getAllSeancesByTeacher = (req, res, next) => {
     const compte_id = req.params.id
     conn.query(`SELECT seance.id_seance,seance.day,seance.id_groupe FROM seance

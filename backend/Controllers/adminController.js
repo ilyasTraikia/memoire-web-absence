@@ -76,7 +76,7 @@ exports.insertSubject = async(req, res, next) => {
 
 
 exports.getAllStudents = (req, res, next) => {
-    conn.query("SELECT * FROM student INNER JOIN academic ON student.SectionYear = academic.id_academic", function(err, data, fields) {
+    conn.query("SELECT * FROM student INNER JOIN groupe ON student.id_groupe = groupe.id_groupe", function(err, data, fields) {
 
         res.status(200).json({
             status: "success",
@@ -109,7 +109,7 @@ exports.insertStudent = async(req, res, next) => {
 
 
     setTimeout(() => {
-        conn.query("INSERT INTO student(firstname,middlename,lastname,SectionYear,birthday,gender,status ,id_compte) VALUES ?", [
+        conn.query("INSERT INTO student(firstname,middlename,lastname,id_groupe,birthday,gender,status ,id_compte) VALUES ?", [
             [values]
         ], function(err, result) {
             if (err)
@@ -150,7 +150,7 @@ exports.UpdateStudent = async(req, res, next) => {
 
     await conn.query(`UPDATE student INNER JOIN compte ON student.id_compte = compte.id_compte 
      SET student.firstname = '${req.body.firstname}'  ,student.middlename = '${req.body.middlename}',
-     student.lastname = '${req.body.lastname}',student.SectionYear='${req.body.SectionYear}',
+     student.lastname = '${req.body.lastname}',student.id_groupe='${req.body.id_groupe}',
      compte.username = '${req.body.username}',compte.password = '${req.body.password}',student.birthday= '${req.body.birthday}',
      student.gender='${req.body.gender}',student.status='${req.body.status}' WHERE id_student = ${student_id_2}`,
 
@@ -173,7 +173,7 @@ exports.UpdateStudent = async(req, res, next) => {
 exports.getStudentById = (req, res, next) => {
     const student_id_3 = req.params.id
     conn.query(`SELECT * FROM student 
-        INNER JOIN academic ON student.SectionYear = academic.id_academic 
+        INNER JOIN groupe ON student.id_groupe = groupe.id_groupe
         INNER JOIN compte ON student.id_compte=compte.id_compte
         where id_student = ${student_id_3}`, function(err, data, fields) {
         res.status(200).json({
